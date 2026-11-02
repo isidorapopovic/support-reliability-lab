@@ -1,0 +1,5 @@
+﻿node --version
+v24.21.0
+npm --version
+11.19.0
+Početni aplikacioni commit: 1f50f92351838fc34da1a58a12f33253ffac9a25
