@@ -3,6 +3,8 @@
 **Od:** Isidora Popović · **Nastavlja:** Elena · **Odbrana:** Isidora
 **Status:** nacrt za Elenin pregled i dopune; test i korekcija još nisu započeti.
 
+Za zajedničko objašnjenje problema, dosadašnjeg rada uz Codex i uloge fajlova pročitati [vodič za Isidoru i Elenu](instructions/PROJECT_DESCRIPTION.md).
+
 ## Polazno stanje
 
 Na grani `main`, referentni checkpoint `b19d105eefd9d3ca5903738c75f9386ca086430b` čuva pripremu koraka 1–5 i početne dokaze. Aplikacioni kod odgovara `init zero` (`1f50f92`). Ovaj `SPEC.md` je naknadni sažetak za predaju: Elena treba da preuzme i commit koji sadrži ovaj fajl. Pri pripremi predaje noviji commitovi još nisu poslati na GitHub; dostupnost proveriti pre preuzimanja.

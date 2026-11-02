@@ -4,6 +4,8 @@
 
 Zapis je napravljen prema `instructions/evidence-template.md`. Dopunjava se tokom rada stvarnim opažanjima i referencama na dokaze. Automatski `report.json`, `summary.md` i tragovi prilažu se zasebno; njihovi metapodaci i rezultati ne prepisuju se niti ručno menjaju.
 
+Zajedničko objašnjenje zadatka, problema, dogovora sa Codex-om, dosadašnjeg rada i uloge fajlova nalazi se u [vodiču za Isidoru i Elenu](instructions/PROJECT_DESCRIPTION.md). Kratak plan nastavka je [SPEC.md](SPEC.md); ovaj evidence ostaje glavni dnevnik stvarnih rezultata i doprinosa.
+
 ## Promena i hipoteza
 
 - Članovi para i ko ove nedelje vodi prikaz: Isidora Popović i Elena. Isidora radi prva, zatim predaje rad Eleni. Isidora vodi završni prikaz i brani projekat.
@@ -77,7 +79,7 @@ Predaja je spremna kada postoje početna merenja, istražen trag i mala specifik
 | Stavka predaje | Trenutni status / polje za dopunu |
 | --- | --- |
 | Početni commit | `1f50f92351838fc34da1a58a12f33253ffac9a25` — `init zero` |
-| Commit predaje Isidora → Elena, grana i opis | Poslednji lokalni checkpoint je `b19d105eefd9d3ca5903738c75f9386ca086430b` na `main`, `docs: define source eligibility specification (step 5)`. Čuva korake 1–5 i početne dokaze kroz istoriju. Naknadna dopuna evidence fajla i kratak `SPEC.md` još nisu commitovani; slanje na remote i stvarna predaja nisu izvršeni. |
+| Commit predaje Isidora → Elena, grana i opis | Lokalni checkpoint predaje je `93defc8084f9dfebee38d8d59ed71fcc2b0df7b8` na `main`, `docs: add Elena handoff spec and update evidence`. Sadrži `SPEC.md` i dopunu evidence fajla, a kroz istoriju korake 1–5 i početne dokaze. Slanje na remote i stvarna predaja još nisu izvršeni. |
 | Početna evaluacija i regresija | Izvršene: 2/4 i 5/7, kod 1 za obe. Tačne putanje su u odeljku „Promena i hipoteza” i odeljku o koraku 3; oba izveštaja, oba sažetka i svih 11 tragova su provereni. |
 | Prenos automatskih dokaza | Oba originalna direktorijuma iz koraka 3 sačuvana su u lokalnom commitu `35bc4df`, iako je `runs/` podrazumevano ignorisan. Commit još nije poslat na remote. Pre predaje proveriti dostupnost commita Eleni i preuzimanje svih dokaza; Elenina potvrda još nije zabeležena. |
 | Opažanje, hipoteza i kriterijumi prihvatanja | Opažanje i hipoteza povezani su sa dokazima u koraku 4; specifikacija, opseg, kriterijumi i predlog testa zapisani su u koraku 5. Pregled i potvrda razumevanja obe članice još nisu zabeleženi. |
@@ -237,6 +239,8 @@ Isidora treba da ume da objasni zašto provera aktivnosti pripada izboru izvora 
 | 02.11.2026. | Na Isidorin zahtev sastavljena je specifikacija koraka 5: problem, hipoteza, granica korekcije, četiri kriterijuma prihvatanja i predlog dva warranty testa za Elenu. | Promenjen je samo evidence fajl. Testovi nisu napisani/pokrenuti, aplikacija nije popravljena; očekivani rezultati nisu predstavljeni kao dobijeni. |
 | 02.11.2026. u 09:56:21 CET | Na Isidorin zahtev preostale izmene sačuvane su commitom `b19d105`: specifikacija koraka 5 i dnevnik commita koraka 4. | Posle commita radni direktorijum bio je čist, a `main` tri commita ispred `origin/main`; commit je lokalni. |
 | 02.11.2026. | Posle commita ažuriran je evidence i pripremljen zaseban kratak `SPEC.md` za Elenin pregled, dopune i nastavak koracima 6–8. | Naknadne dokumentacione izmene još nisu commitovane. Materijal nije poslat; Elenin pregled, potvrda i izvršavanje nisu zabeleženi. Aplikacioni kod je neizmenjen. |
+| 02.11.2026. u 10:00:35 CET | Na Isidorin zahtev commitovani su `SPEC.md` i dopune evidence fajla commitom `93defc8`. | Provera formatiranja prošla; aplikacioni kod nije menjan. Radni direktorijum je posle commita bio čist. Naknadno je u evidence upisan stvarni SHA ovog commita. |
+| 02.11.2026. | Na Isidorin zahtev napisan je `instructions/PROJECT_DESCRIPTION.md`: zajednički vodič o zahtevu zadatka, pronađenom problemu, dosadašnjem radu uz Codex, rezultatima, ulozi fajlova i preostalim obavezama. Povezan je sa SPEC-om i evidence fajlom. | Dokumentaciona dopuna; nije izvedena nova funkcionalna provera niti menjana aplikacija. Elenin rad i završni rezultati ostaju planirani. Vodič nije commitovan ni poslat. |
 
 ## Dnevnik commitova i povratak na prethodno stanje
 
@@ -250,8 +254,9 @@ Za svaki naredni commit dodati stvarni puni SHA, tačnu commit poruku, kratak op
 | 02.11.2026. 09:42:46 CET | `35bc4dfdd5946647575a14c1cdb4823f0128d7b5` — `docs: preserve initial evidence and baseline runs (steps 1-3)` | Sačuvani evidence, podela rada, `AGENTS.md`, konzolni izlazi pripreme/CLI provera i oba originalna početna izvršavanja; 29 dodatih fajlova. Opis commita navodi pripremu, rezultate 2/4 i 5/7 i čuvanje dokaza bez izmene aplikacije. | Prethodno dobijeni typecheck/build kod 0, osnovni testovi 3/3; početna evaluacija 2/4 i regresija 5/7. `git diff --cached --check` prošao. Commit je lokalni; nije poslat na remote. | Početni aplikacioni kod sa dokumentacijom i sačuvanim dokazima koraka 1–3, pre istrage iz koraka 4. |
 | 02.11.2026. 09:49:24 CET | `04f13dadc3037c0e0198eac053d76a3eaa0b5e67` — `docs: record source-selection investigation (step 4)` | Sačuvana analiza refund traga i arhiviranog izvora, izbor samo po temi, ograničenja slabe provere i ilustrativne ocene i zapis prethodnog checkpoint-a; jedna izmenjena datoteka. | Dokumentaciona provera `git diff --cached --check` prošla; novi funkcionalni testovi nisu pokretani jer aplikacija nije menjana. Commit je lokalni. | Početni aplikacioni kod sa dokazima koraka 1–3 i analizom koraka 4, pre specifikacije i implementacije. |
 | 02.11.2026. 09:56:21 CET | `b19d105eefd9d3ca5903738c75f9386ca086430b` — `docs: define source eligibility specification (step 5)` | Sačuvani opseg minimalne policy korekcije, kriterijumi prihvatanja, predlog dva warranty testa, redosled dokazivanja pre/posle i zapis prethodnog commita; jedna izmenjena datoteka. | `git diff --cached --check` prošao. Funkcionalni testovi nisu ponavljani; aplikacija i javni skupovi nisu menjani. Commit je lokalni. | Završena dokumentaciona priprema koraka 1–5 pre dodatnog testa i popravke; novi kratki `SPEC.md` nastaje nakon ovog checkpoint-a. |
+| 02.11.2026. 10:00:35 CET | `93defc8084f9dfebee38d8d59ed71fcc2b0df7b8` — `docs: add Elena handoff spec and update evidence` | Dodat kratak `SPEC.md` za Elenin pregled i izvršavanje; dopunjen evidence statusom predaje i prethodnim commitom. Dve izmenjene/dodate datoteke. | `git diff --cached --check` prošao; dokumentaciona izmena bez ponavljanja funkcionalnih testova. Commit je lokalni; nije poslat na GitHub. | Pripremljen materijal za Elenu pre dodatnog testa i korekcije, uz početne dokaze dostupne kroz istoriju. |
 
-Dnevnik se dopunjava stvarnim SHA posle nastanka svakog commita. Red za `35bc4df` sačuvan je u `04f13da`, a red za `04f13da` i specifikacija koraka 5 u `b19d105`. Red za `b19d105`, dopuna statusa predaje i novi `SPEC.md` nastali su posle poslednjeg commita i ostaju za sledeći smisleni commit; sopstveni SHA ne može biti sadržaj istog commita.
+Dnevnik se dopunjava stvarnim SHA posle nastanka svakog commita. Prethodni redovi i `SPEC.md` sačuvani su u istoriji zaključno sa `93defc8`. Red za `93defc8` i osvežen status predaje nastali su nakon tog commita i ostaju dopuna evidence fajla za sledeći smisleni commit; sopstveni SHA ne može biti sadržaj istog commita.
 
 Pregled zabeleženog početnog stanja i poređenje sa trenutnim kodom:
 
