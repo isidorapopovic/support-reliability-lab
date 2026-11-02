@@ -13,8 +13,8 @@ Zapis je napravljen prema `instructions/evidence-template.md`. Dopunjava se toko
 - Početna regresija: [`runs/regression-97de2b74-ed8d-46e2-ab4c-8702d0cb8da5/report.json`](runs/regression-97de2b74-ed8d-46e2-ab4c-8702d0cb8da5/report.json).
 - Završni izveštaji: još nisu napravljeni; korekcija aplikacije nije urađena.
 - Koji problem smo opazili, koji trag ga podržava i zašto smo očekivali da ova izmena pomogne: `refund` vraća 30 dana i citira arhivirani `refund-old`, revizija 1, iako aktivni `refund-current`, revizija 2, navodi 14 dana. Početni evaluacioni refund trag potvrđuje izbor tog ID-ja i revizije; `data/lab.json` potvrđuje njegov status. Pregled `src/app.ts:57` pokazuje da `.find(...)` proverava samo temu i uzima prvi odgovarajući dokument, bez provere `state`; stari refund dokument je prvi u javnim podacima. Hipoteza za proveru: izbor samo aktivnog izvora iste teme pre modelskog poziva treba da ukloni ovaj uzrok i omogući postojeće odbijanje kada prihvatljiv izvor ne postoji. Isto objašnjenje odgovara opaženom `legacy` propustu. Korekcija i test hipoteze još nisu sprovedeni; detaljno tumačenje je u odeljku o koraku 4.
-- Granica izmene i dodatna regresiona provera: još nisu definisane na osnovu istrage. Predviđeni opseg zadatka je ograničena izmena u `src/` i novi ciljani test u `tests/`, uz očuvanje javnih podataka, postojećih testova, konfiguracije i evaluacionih skripti.
-- Ime dodatnog testa, zašto je pao pre izmene i prošao posle; reference na `test-before.txt` / `test-after.txt`: test još nije dodat ni izvršen; dokazi pre/posle nisu napravljeni.
+- Granica izmene i dodatna regresiona provera: minimalna korekcija izbora izvora u policy grani `src/app.ts`, tako da se pre modelskog poziva prihvati samo aktivan dokument iste teme, uz postojeće odbijanje kada ga nema. Dodaje se `tests/source-eligibility.test.mjs` sa sopstvenim sintetičkim podacima za temu `warranty`. Account putanja, javni podaci, postojeći testovi, konfiguracija i evaluacione skripte ostaju neizmenjeni. Tačni kriterijumi i plan testa navedeni su u koraku 5.
+- Ime dodatnog testa, zašto je pao pre izmene i prošao posle; reference na `test-before.txt` / `test-after.txt`: predloženi su testovi `policy selects active warranty source after archived source` i `policy refuses archived-only warranty sources without dependency calls`. Još nisu napisani ni izvršeni; neuspeh pre i prolaz posle su očekivanja za proveru, ne dobijeni rezultati. `test-before.txt` i `test-after.txt` tek treba napraviti u koraku 6.
 
 ## Tumačenje, ne prepisivanje
 
@@ -27,7 +27,7 @@ Zapis je napravljen prema `instructions/evidence-template.md`. Dopunjava se toko
 
 - Definisana simulirana upotreba; izdati / ograničiti / ne izdati, sa razlogom: konačna preporuka još nije doneta; početna merenja potvrđuju dva propusta. Slede istraga, ciljana korekcija i završno poređenje pre obrazložene preporuke.
 - Najvažniji preostali rizik i šta ne možemo zaključiti iz kontrolisane modelske zamene/malog skupa: rizik još nije procenjen; iz samog početnog commita ne može se zaključiti da je servis spreman za upotrebu.
-- Jedan signal za praćenje, uslov za reakciju i sledeća provera: signal i uslov tek treba definisati. Sledeći korak je korak 5: zapis male specifikacije, opsega promene i kriterijuma prihvatanja pre predaje Eleni. Korekcija se ne sprovodi pre dodatnog testa i dokaza njegovog neuspeha na početnom kodu.
+- Jedan signal za praćenje, uslov za reakciju i sledeća provera: signal i uslov tek treba definisati. Specifikacija iz koraka 5 je napisana; slede pregled obe članice i priprema predaje Eleni, potom dodatni test na nepopravljenom kodu. Korekcija se ne sprovodi pre dokaza njegovog neuspeha.
 
 ## AI pomoć i pojedinačni doprinos
 
@@ -36,6 +36,7 @@ Zapis je napravljen prema `instructions/evidence-template.md`. Dopunjava se toko
 - Nastavak Isidorinog dela: zatražila je vođeno izvođenje koraka 2 i objašnjenje rezultata. Komande je izvršio Codex; Isidorina samostalna provera izlaza i razumevanja još nije potvrđena.
 - Korak 3 uz AI pomoć: na Isidorin zahtev Codex je izvršio početnu evaluaciju i regresiju, sačuvao konzolne izlaze i proverio da izveštaji i svi referencirani tragovi postoje, da se uspešno čitaju i da tragovi odgovaraju zapisima u izveštajima. Provereno je poklapanje uslova dva merenja i neizmenjenost aplikacionih fajlova prema početnom commitu. Lična provera članica i tutorova nezavisna potvrda još nisu zabeležene.
 - Korak 4 uz AI pomoć: na Isidorin zahtev Codex je povezao originalni refund rezultat i izdvojeni trag sa dokumentima, policy kodom i evaluacionim pravilima; objasnio je ograničenje `weakCheck` i poreklo ilustrativne ocene. Nalaz je potkrepljen pregledanim fajlovima, a predložena hipoteza još nije potvrđena korekcijom i testom pre/posle. Nije upisano da je Isidora samostalno izvršila ili nezavisno potvrdila ovu analizu.
+- Korak 5 uz AI pomoć: na Isidorin zahtev Codex je sastavio malu specifikaciju iz opaženog nalaza i javnog ugovora, sa opsegom promene, kriterijumima i predlogom dva testa za novu temu. Testovi i korekcija nisu implementirani. Isidorina i Elenina potvrda razumevanja i prihvatanja specifikacije još nisu zabeležene.
 - Član 2 — Elena: preuzima rad nakon Isidorine početne analize i predaje. Izvršeni doprinos još nije zabeležen; njene planirane obaveze navedene su ispod.
 
 ## Dogovorena podela rada i predaja
@@ -75,10 +76,10 @@ Predaja je spremna kada postoje početna merenja, istražen trag i mala specifik
 | Stavka predaje | Trenutni status / polje za dopunu |
 | --- | --- |
 | Početni commit | `1f50f92351838fc34da1a58a12f33253ffac9a25` — `init zero` |
-| Commit predaje Isidora → Elena, grana i opis | Još nije napravljen; upisati stvarni SHA, granu i poruku kada prva faza bude završena. |
+| Commit predaje Isidora → Elena, grana i opis | Poslednji lokalni checkpoint je `04f13da` na `main` (istraga koraka 4). Specifikacija koraka 5 napravljena je posle tog commita i još nije commitovana. Završni commit predaje i dostupnost Eleni tek treba zabeležiti. |
 | Početna evaluacija i regresija | Izvršene: 2/4 i 5/7, kod 1 za obe. Tačne putanje su u odeljku „Promena i hipoteza” i odeljku o koraku 3; oba izveštaja, oba sažetka i svih 11 tragova su provereni. |
 | Prenos automatskih dokaza | Oba originalna direktorijuma iz koraka 3 sačuvana su u lokalnom commitu `35bc4df`, iako je `runs/` podrazumevano ignorisan. Commit još nije poslat na remote. Pre predaje proveriti dostupnost commita Eleni i preuzimanje svih dokaza; Elenina potvrda još nije zabeležena. |
-| Opažanje, hipoteza i kriterijumi prihvatanja | Opažanje i hipoteza povezani su sa tragom, dokumentima i kodom u koraku 4; mala specifikacija i potpuni kriterijumi za predaju tek slede u koraku 5. |
+| Opažanje, hipoteza i kriterijumi prihvatanja | Opažanje i hipoteza povezani su sa dokazima u koraku 4; specifikacija, opseg, kriterijumi i predlog testa zapisani su u koraku 5. Pregled i potvrda razumevanja obe članice još nisu zabeleženi. |
 | Stanje aplikacionog koda, testa i otvoreni problemi | Trenutno početni kod; dodatni test još ne postoji. Na predaji navesti stvarno stanje i sve neizvršene provere/blokere. |
 | Datum predaje i Elenina potvrda preuzimanja | Još nisu zabeleženi. |
 
@@ -184,6 +185,38 @@ Posle ciljane korekcije očekuju se promenjeni izvor/izgrađeni kod, a zbog doda
 
 Kontrolna tačka koraka 4: trag, dokument i kod povezani su u proverljiv nalaz; opažanje je odvojeno od još neproverene korekcije. Isidorina lična potvrda razumevanja i Elenin pregled tek slede. Sledeći korak je mala specifikacija iz koraka 5, pre predaje i implementacije.
 
+## Izvršeno: korak 5 — mala specifikacija pre implementacije
+
+Datum: 02.11.2026. Ovaj korak pretvara nalaz iz istrage u jasan dogovor o očekivanom ponašanju i proveri, pre pisanja korekcije. Status: specifikacija je napisana uz Codex; obe članice tek treba da je pregledaju i potvrde razumevanje. Aplikacija i testovi ostaju u početnom stanju.
+
+**Problem i pretpostavljeni uzrok:** policy izbor u `src/app.ts:57` proverava samo temu i uzima prvi odgovarajući dokument. Zato početni refund trag pokazuje arhivirani `refund-old`, a legacy zahtev prolazi iako nema aktivnog izvora. **Predlog minimalne promene:** pri izboru zahtevati odgovarajuću temu i `state: active`, pre poziva modela; ako nema takvog dokumenta, vratiti postojeće odbijanje bez poziva modela. Tekst odgovora i citat moraju poticati iz istog izabranog aktivnog dokumenta. Pravilo važi za proizvoljnu temu i ne sme zavisiti od refund ID-ja ili unapred upisanog roka.
+
+**Opseg:** buduća korekcija ograničena je na policy izbor izvora u `src/app.ts`; novi test dodaje se u `tests/source-eligibility.test.mjs`. Javne dokumente i njihov redosled u `data/lab.json`, postojeće testove, account putanju, konfiguraciju, evaluator i skripte za dokaze ne menjati. `dist/` se samo generiše build-om. Ovaj korak ne uvodi UI, novi model ili dodatne funkcije.
+
+### Kriterijumi prihvatanja
+
+| ID | Očekivano ponašanje | Planirana provera |
+| --- | --- | --- |
+| K1 | Za validnu policy temu sa aktivnim izvorom izabrati aktivni izvor te teme i kada se arhivirani nalazi pre njega; odgovor `ok`, odgovarajući tekst i tačno njegov citat. | Novi warranty primer proverava status, tačan tekst, tačan citat, izvor prosleđen modelu i jedan modelski poziv. |
+| K2 | Ako postoje samo arhivirani izvori zadate teme, odbiti zahtev (`refused`), bez citata, bez modelskog poziva i bez lookup poziva; aktivan dokument druge teme nije prihvatljiv. | Novi warranty primer sa arhiviranim izvorom i aktivnim dokumentom druge teme; zasebni brojači poziva. |
+| K3 | Očuvati postojeća prihvatljiva ponašanja za `shipping`, nedostajući izvor, poznate naloge i neispravan zahtev. | Postojeća tri testa i isti javni regresioni skup, uz pregled pojedinačnih rezultata. |
+| K4 | Isti smisleni dodatni test pokazuje poslovni propust pre korekcije i prolaz posle; javni skupovi ostaju uporedivi pod istim podacima i načinom merenja. | Stvarni `test-before.txt` / `test-after.txt`, nova javna evaluacija i regresija, pa dva poređenja sa sačuvanim početnim izveštajima. |
+
+### Predlog testa za Elenu — još nije implementiran
+
+U novom fajlu koristiti Node test runner, `node:assert/strict` i stvarni `answer` iz `../dist/app.js`, po obrascu postojećih testova. Podaci su lokalni unutar novog testa; ne prepravljaju javni skup.
+
+- **Test 1 — `policy selects active warranty source after archived source`:** zahtev je policy tema `warranty`. Sintetički niz sadrži `warranty-old` (archived, tekst `Warranty lasts 1 month.`), zatim aktivni dokument druge teme, zatim `warranty-current` (active, tekst `Warranty lasts 12 months.`). Kontrolisani model vraća `Policy: ` i tekst primljenog izvora i beleži koji izvor je dobio. Eksplicitna očekivanja su `ok`, tekst `Policy: Warranty lasts 12 months.`, jedini citat `warranty-current`, isti aktivni warranty izvor prosleđen modelu, jedan modelski poziv i nula lookup poziva. Očekivani početni pad je assertion zbog starog teksta/izvora/citata; to još nije izvršeno.
+- **Test 2 — `policy refuses archived-only warranty sources without dependency calls`:** ista tema, ali sintetički niz sadrži samo arhivirani warranty dokument i aktivni dokument druge teme. Očekivanja su `refused`, prazan niz citata i nula poziva oba dependency-ja. Početni kod bi trebalo da vrati `ok` iz arhiviranog izvora; to je očekivanje za proveru. Brojače proveravati eksplicitno: sam exception u modelu nije dovoljan, jer aplikacija hvata modelske greške.
+
+Očekivani ID, tekst i status upisuju se direktno iz ugovora i sintetičkih podataka, bez ponavljanja `.find(...)` algoritma radi izračunavanja očekivanja. Odvojena provera citata hvata i slučaj u kome bi tekst bio aktivan, a citat ostao arhiviran. Nova tema i drugačiji tekstovi proveravaju opšte pravilo; posebna zamena odgovora samo za refund ne bi zadovoljila test.
+
+### Redosled nastavka i granica predaje
+
+Elena prvo pregleda opažanje, hipotezu, specifikaciju i početne dokaze. Zatim dodaje i pokreće novi test na nepopravljenom kodu, sačuva stvarni assertion neuspeh u `test-before.txt`, pa tek onda primenjuje minimalnu korekciju. Posle korekcije proverava typecheck, postojeće i nove testove, čuva `test-after.txt`, izvršava oba javna skupa i poredi ih sa odgovarajućim početnim izveštajima. Očekivani završni javni rezultati su 4/4 i 7/7; stvarne rezultate tek treba dobiti i upisati.
+
+Isidora treba da ume da objasni zašto provera aktivnosti pripada izboru izvora pre modela, zašto pravilo važi za bilo koju temu i kako test razlikuje stari i očekivani rezultat. Elena treba da potvrdi isto razumevanje pre implementacije. Ovaj zapis ne tvrdi da su te lične potvrde već dobijene. Ostaju priprema commita predaje, dostupnost materijala Eleni i njena potvrda preuzimanja; korak 6 nije započet.
+
 ## Dnevnik rada
 
 | Datum (Europe/Budapest) | Urađeno | Osnov za zapis / ograničenje |
@@ -198,6 +231,8 @@ Kontrolna tačka koraka 4: trag, dokument i kod povezani su u proverljiv nalaz; 
 | 02.11.2026. | Na Isidorin zahtev pripremljen checkpoint za korake 1–3: evidence, podela rada, pravila beleženja commitova, konzolni izlazi i dva originalna direktorijuma početnih merenja. | Poruka planiranog commita: `docs: preserve initial evidence and baseline runs (steps 1-3)`. Stvarni SHA upisuje se u dnevnik tek nakon uspešnog commita. Aplikacioni kod nije menjan. |
 | 02.11.2026. u 09:42:46 CET | Napravljen lokalni commit `35bc4df` sa opisom rada i 29 dodatih fajlova; zatim stvarni SHA i opis upisani u dnevnik commitova. | Uključen je komplet oba odabrana početna izvršavanja; commit nije poslat na remote. Upis njegovog SHA nastao je posle commita. |
 | 02.11.2026. | Izvršen korak 4: Codex je povezao refund zahtev, rezultat, trag, status izvora i policy izbor dokumenta; analizirani su `weakCheck`, ilustrativna ocena i identitet početnog izvršavanja. | Nalaz i hipoteza zapisani su iznad. Izvor, podaci, testovi i evaluator nisu menjani. Analiza i red novog commita ostaju lokalne izmene evidence fajla za sledeći commit. |
+| 02.11.2026. u 09:49:24 CET | Na Isidorin zahtev preostale izmene evidence fajla sačuvane su lokalnim commitom `04f13da`, sa opisom istrage koraka 4 i dnevnikom prethodnog commita. | Posle commita radni direktorijum bio je čist; grana `main` je dva commita ispred `origin/main`. Slanje na remote nije izvršeno. |
+| 02.11.2026. | Na Isidorin zahtev sastavljena je specifikacija koraka 5: problem, hipoteza, granica korekcije, četiri kriterijuma prihvatanja i predlog dva warranty testa za Elenu. | Promenjen je samo evidence fajl. Testovi nisu napisani/pokrenuti, aplikacija nije popravljena; očekivani rezultati nisu predstavljeni kao dobijeni. |
 
 ## Dnevnik commitova i povratak na prethodno stanje
 
@@ -209,8 +244,9 @@ Za svaki naredni commit dodati stvarni puni SHA, tačnu commit poruku, kratak op
 | --- | --- | --- | --- | --- |
 | 02.11.2026. 09:10:01 CET | [`1f50f92351838fc34da1a58a12f33253ffac9a25`](https://github.com/isidorapopovic/support-reliability-lab/commit/1f50f92351838fc34da1a58a12f33253ffac9a25) — `init zero` | Početno stanje: izvor, podaci, postojeći testovi, skripte, konfiguracija i uputstva; 16 fajlova. | Git push uspešan; lokalna i udaljena grana usklađene. Funkcionalne provere nisu izvršene. | Početni kod pre istrage i izmena; nije potvrđena ispravna verzija. |
 | 02.11.2026. 09:42:46 CET | `35bc4dfdd5946647575a14c1cdb4823f0128d7b5` — `docs: preserve initial evidence and baseline runs (steps 1-3)` | Sačuvani evidence, podela rada, `AGENTS.md`, konzolni izlazi pripreme/CLI provera i oba originalna početna izvršavanja; 29 dodatih fajlova. Opis commita navodi pripremu, rezultate 2/4 i 5/7 i čuvanje dokaza bez izmene aplikacije. | Prethodno dobijeni typecheck/build kod 0, osnovni testovi 3/3; početna evaluacija 2/4 i regresija 5/7. `git diff --cached --check` prošao. Commit je lokalni; nije poslat na remote. | Početni aplikacioni kod sa dokumentacijom i sačuvanim dokazima koraka 1–3, pre istrage iz koraka 4. |
+| 02.11.2026. 09:49:24 CET | `04f13dadc3037c0e0198eac053d76a3eaa0b5e67` — `docs: record source-selection investigation (step 4)` | Sačuvana analiza refund traga i arhiviranog izvora, izbor samo po temi, ograničenja slabe provere i ilustrativne ocene i zapis prethodnog checkpoint-a; jedna izmenjena datoteka. | Dokumentaciona provera `git diff --cached --check` prošla; novi funkcionalni testovi nisu pokretani jer aplikacija nije menjana. Commit je lokalni. | Početni aplikacioni kod sa dokazima koraka 1–3 i analizom koraka 4, pre specifikacije i implementacije. |
 
-Red za `35bc4df` dodat je nakon njegovog nastanka; kao i naredna analiza, ostaje lokalna izmena evidence fajla za sledeći smisleni commit. Njegov sopstveni SHA ne može biti sadržaj istog commita.
+Dnevnik se dopunjava stvarnim SHA posle nastanka svakog commita. Red za `35bc4df` već je sačuvan u `04f13da`. Red za `04f13da` i specifikacija koraka 5 nastali su posle njega i ostaju lokalna izmena evidence fajla za sledeći smisleni commit; sopstveni SHA ne može biti sadržaj istog commita.
 
 Pregled zabeleženog početnog stanja i poređenje sa trenutnim kodom:
 
