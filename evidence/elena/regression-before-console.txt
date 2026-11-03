@@ -1,0 +1,11 @@
+
+> support-reliability-lab@1.0.0 regression
+> npm run build && node scripts/run.mjs regression
+
+
+> support-reliability-lab@1.0.0 build
+> tsc
+
+5/7; evidence: /Users/ladylazarus/Desktop/support-reliability-lab/runs/regression-bcbf8396-3a0b-462f-97ae-72269ce89e7c
+
+Exit code: 1

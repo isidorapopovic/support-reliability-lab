@@ -1,0 +1,23 @@
+
+> support-reliability-lab@1.0.0 test
+> npm run build && node --test tests/*.test.mjs
+
+
+> support-reliability-lab@1.0.0 build
+> tsc
+
+✔ invalid requests do not call external dependencies (0.312334ms)
+✔ unsupported topics are refused without model execution (0.633083ms)
+✔ known suspended account remains suspended (0.085583ms)
+✔ policy selects active warranty source after archived source (0.507ms)
+✔ policy refuses archived-only warranty sources without dependency calls (0.06475ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.881375
+
+Exit code: 0

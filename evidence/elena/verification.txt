@@ -1,0 +1,18 @@
+evaluate-bf41802a-1e41-4396-a74d-af2243e9b8e1: 2/4, 4 traces verified, git={'revision': '7640c07f6b6b488be5dda201192f6cf2a5488f41', 'dirty': False}
+evaluate-19b00b98-e881-4442-b78e-9a14fb477219: 4/4, 4 traces verified, git={'revision': '843b3a6a46c88e3943ee62feeacbdf48c91dfa7e', 'dirty': True}
+evaluate: data, config, scripts, case IDs equal
+evaluate/refund: pass=True, status=ok, text=Policy: Refund period: 14 days., citations=['refund-current'], modelCalls=1, lookupCalls=0
+evaluate/shipping: pass=True, status=ok, text=Policy: Shipping takes 3 days., citations=['shipping-current'], modelCalls=1, lookupCalls=0
+evaluate/legacy: pass=True, status=refused, text=Nema odgovarajućeg izvora., citations=[], modelCalls=0, lookupCalls=0
+evaluate/unsupported: pass=True, status=refused, text=Nema odgovarajućeg izvora., citations=[], modelCalls=0, lookupCalls=0
+regression-bcbf8396-3a0b-462f-97ae-72269ce89e7c: 5/7, 7 traces verified, git={'revision': '7640c07f6b6b488be5dda201192f6cf2a5488f41', 'dirty': True}
+regression-21c6abef-3ef5-4fcc-b835-1d41a4c052a4: 7/7, 7 traces verified, git={'revision': '843b3a6a46c88e3943ee62feeacbdf48c91dfa7e', 'dirty': True}
+regression: data, config, scripts, case IDs equal
+regression/refund: pass=True, status=ok, text=Policy: Refund period: 14 days., citations=['refund-current'], modelCalls=1, lookupCalls=0
+regression/shipping: pass=True, status=ok, text=Policy: Shipping takes 3 days., citations=['shipping-current'], modelCalls=1, lookupCalls=0
+regression/legacy: pass=True, status=refused, text=Nema odgovarajućeg izvora., citations=[], modelCalls=0, lookupCalls=0
+regression/unsupported: pass=True, status=refused, text=Nema odgovarajućeg izvora., citations=[], modelCalls=0, lookupCalls=0
+regression/active-account: pass=True, status=ok, text=Status naloga: active., citations=[], modelCalls=0, lookupCalls=1
+regression/suspended-account: pass=True, status=ok, text=Status naloga: suspended., citations=[], modelCalls=0, lookupCalls=1
+regression/invalid: pass=True, status=invalid, text=Neispravan zahtev., citations=[], modelCalls=0, lookupCalls=0
+test sha256=50d13a9132aa8fc23e768d3c0c4d996d5788124621b1e62b95006e9fe0dbed4c

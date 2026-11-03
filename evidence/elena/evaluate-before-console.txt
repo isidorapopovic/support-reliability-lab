@@ -1,0 +1,11 @@
+
+> support-reliability-lab@1.0.0 evaluate
+> npm run build && node scripts/run.mjs evaluate
+
+
+> support-reliability-lab@1.0.0 build
+> tsc
+
+2/4; evidence: /Users/ladylazarus/Desktop/support-reliability-lab/runs/evaluate-bf41802a-1e41-4396-a74d-af2243e9b8e1
+
+Exit code: 1

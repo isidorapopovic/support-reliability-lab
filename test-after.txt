@@ -1,0 +1,12 @@
+✔ policy selects active warranty source after archived source (0.482083ms)
+✔ policy refuses archived-only warranty sources without dependency calls (0.058667ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32.067042
+
+Exit code: 0

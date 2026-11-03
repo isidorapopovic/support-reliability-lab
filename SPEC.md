@@ -1,7 +1,7 @@
 # W09 / H1 — izbor aktivnog izvora: predaja Eleni
 
 **Od:** Isidora Popović · **Nastavlja:** Elena · **Odbrana:** Isidora
-**Status:** nacrt za Elenin pregled i dopune; test i korekcija još nisu započeti.
+**Status 03.11.2026:** tehnički pregled uz koordinatora, ciljna implementacija i macOS provere su završeni uz Codex. Lična potvrda Elene još nije zabeležena.
 
 Za zajedničko objašnjenje problema, dosadašnjeg rada uz Codex i uloge fajlova pročitati [vodič za Isidoru i Elenu](instructions/PROJECT_DESCRIPTION.md).
 
@@ -54,7 +54,11 @@ U PowerShell-u možeš koristiti `npm.cmd` umesto `npm`. Posle neuspešnog build
 
 ## Elenin pregled i dopune
 
-- Datum / preuzeti commit: **čeka se**.
-- Prihvaćeno / potrebno izmeniti, sa razlogom: **čeka se**.
-- Dogovorene dopune specifikacije: **čeka se**; uskladiti sa evidence fajlom pre implementacije.
+- Datum / preuzeti commit: **03.11.2026; `7640c07f6b6b488be5dda201192f6cf2a5488f41`**, lokalna grana `week9/elena-source-eligibility`.
+- Tehnički pregled uz koordinatora: nastavak rada na Elenin zahtev, uz Codex; prihvaćena su dva planirana warranty scenarija i minimalna policy korekcija. Ovo nije Elenina lična potvrda izvršavanja ili rezultata.
+- Dopuna postupka: zbog Windows separatora putanja u Isidorinim originalnim izveštajima, novi početni i završni par nastaje na macOS-u. Originalni Windows dokazi ostaju sačuvani i neizmenjeni.
 - Stvarno izvršeni koraci, putanje dokaza i commitovi: beležiti u `EVIDENCE_W09.md`.
+
+## Stvarni ishod nastavka
+
+Implementacioni commit je `843b3a6a46c88e3943ee62feeacbdf48c91dfa7e` (`fix: select active policy source and test eligibility`). Isti novi test, SHA-256 `50d13a9132aa8fc23e768d3c0c4d996d5788124621b1e62b95006e9fe0dbed4c`, pre korekcije pada 0/2 zbog dva poslovna assertion-a, a posle prolazi 2/2. Typecheck i svih pet testova prolaze. Novi macOS parovi pokazuju evaluaciju 2/4 → 4/4 i regresiju 5/7 → 7/7; obe originalne `compare` komande završile su kodom 0. Tačne putanje, izlazni kodovi, tumačenje i ograničenja su u `EVIDENCE_W09.md`. Isidorini originalni Windows dokazi ostaju neizmenjeni.
