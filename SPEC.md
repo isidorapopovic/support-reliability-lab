@@ -5,7 +5,7 @@
 
 Za zajedničko objašnjenje problema, dosadašnjeg rada uz Codex i uloge fajlova pročitati [vodič za Isidoru i Elenu](instructions/PROJECT_DESCRIPTION.md).
 
-## Polazno stanje
+## Polazno stanje pri pripremi 02.11.2026.
 
 Na grani `main`, referentni checkpoint `b19d105eefd9d3ca5903738c75f9386ca086430b` čuva pripremu koraka 1–5 i početne dokaze. Aplikacioni kod odgovara `init zero` (`1f50f92`). Ovaj `SPEC.md` je naknadni sažetak za predaju: Elena treba da preuzme i commit koji sadrži ovaj fajl. Pri pripremi predaje noviji commitovi još nisu poslati na GitHub; dostupnost proveriti pre preuzimanja.
 
@@ -20,7 +20,7 @@ Oba direktorijuma su uključena u prethodne commitove. Sadrže originalne `repor
 
 `src/app.ts:57` bira prvi dokument iste teme bez provere aktivnosti. Zato `refund` koristi arhivirani izvor i rok 30 dana umesto aktivnog izvora sa 14 dana, a `legacy` odgovara iako ima samo arhiviran izvor.
 
-**Hipoteza:** u policy izboru zahtevati istu temu i `state: active` pre modelskog poziva. Ako prihvatljiv izvor ne postoji, koristiti odbijanje. Hipotezu tek treba potvrditi testom pre/posle.
+**Tadašnja hipoteza:** u policy izboru zahtevati istu temu i `state: active` pre modelskog poziva. Ako prihvatljiv izvor ne postoji, koristiti odbijanje. Naknadna provera pre/posle i njen ograničeni ishod navedeni su u odeljku „Stvarni ishod nastavka”.
 
 Menjati samo policy izbor u `src/app.ts` i dodati `tests/source-eligibility.test.mjs`. Očuvati account putanju, javne podatke i njihov redosled, postojeće testove, konfiguraciju i evaluator. `dist/` nastaje build-om. Rešenje mora važiti za bilo koju temu.
 
@@ -62,3 +62,5 @@ U PowerShell-u možeš koristiti `npm.cmd` umesto `npm`. Posle neuspešnog build
 ## Stvarni ishod nastavka
 
 Implementacioni commit je `843b3a6a46c88e3943ee62feeacbdf48c91dfa7e` (`fix: select active policy source and test eligibility`). Isti novi test, SHA-256 `50d13a9132aa8fc23e768d3c0c4d996d5788124621b1e62b95006e9fe0dbed4c`, pre korekcije pada 0/2 zbog dva poslovna assertion-a, a posle prolazi 2/2. Typecheck i svih pet testova prolaze. Novi macOS parovi pokazuju evaluaciju 2/4 → 4/4 i regresiju 5/7 → 7/7; obe originalne `compare` komande završile su kodom 0. Tačne putanje, izlazni kodovi, tumačenje i ograničenja su u `EVIDENCE_W09.md`. Isidorini originalni Windows dokazi ostaju neizmenjeni.
+
+Dokumentacioni i dokazni commit je `1df7b20eaef146af5cc103801b6cc07bc1c60766`. Materijali su lokalno spremni za Elenin i Isidorin lični pregled; nisu poslati niti predati ovim lokalnim commitovima.

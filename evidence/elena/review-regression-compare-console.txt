@@ -1,0 +1,15 @@
+Command: npm run compare -- runs/regression-bcbf8396-3a0b-462f-97ae-72269ce89e7c/report.json runs/regression-21c6abef-3ef5-4fcc-b835-1d41a4c052a4/report.json
+
+> support-reliability-lab@1.0.0 compare
+> node scripts/compare.mjs runs/regression-***/report.json runs/regression-***/report.json
+
+refund: FAIL -> PASS
+shipping: PASS -> PASS
+legacy: FAIL -> PASS
+unsupported: PASS -> PASS
+active-account: PASS -> PASS
+suspended-account: PASS -> PASS
+invalid: PASS -> PASS
+Before 5/7; after 7/7. Inspect traces and critical failures, not only totals.
+
+Exit code: 0

@@ -1,0 +1,12 @@
+Command: npm run compare -- runs/evaluate-bf41802a-1e41-4396-a74d-af2243e9b8e1/report.json runs/evaluate-19b00b98-e881-4442-b78e-9a14fb477219/report.json
+
+> support-reliability-lab@1.0.0 compare
+> node scripts/compare.mjs runs/evaluate-***/report.json runs/evaluate-***/report.json
+
+refund: FAIL -> PASS
+shipping: PASS -> PASS
+legacy: FAIL -> PASS
+unsupported: PASS -> PASS
+Before 2/4; after 4/4. Inspect traces and critical failures, not only totals.
+
+Exit code: 0
