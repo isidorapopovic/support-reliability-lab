@@ -12,6 +12,10 @@ Zajedničko objašnjenje zadatka, problema, dogovora sa Codex-om, dosadašnjeg r
 
 **Objava grane, 03.11.2026:** na korisnikov zahtev `week9/elena-source-eligibility` je uspešno poslata na `origin` do commita `873edeaa1ca530e214be745dc00c634c25c27a56`; lokalni HEAD i udaljena grana potvrđeni su na istom SHA. Ovo potvrđuje Git objavu, ne Eleninu ličnu proveru niti predaju tutorima.
 
+**Provera statusa, 04.11.2026. (Europe/Budapest):** `git fetch origin` potvrdio je pet novih commitova na `origin/main`. Čist lokalni `main` zatim je uspešno ažuriran komandom `git merge --ff-only origin/main`, sa `7640c07f6b6b488be5dda201192f6cf2a5488f41` na `efbea209fe65240afaff8fb72c92ddfeb11a3d4a`. Time su lokalno preuzeti implementacija, testovi i dokazi Elenine faze. Pregledani sačuvani rezultati od 03.11.2026. pokazuju 5/5 testova, evaluaciju 4/4 i regresiju 7/7; danas nisu ponavljani build, testovi ni evaluacija. Lične potvrde članica, tutorov rezultat i analiza incidenta ostaju nezabeleženi. Dopunjen je puni SHA poslednjeg commita u dnevniku; ova dopuna evidence fajla ostaje necommitovana.
+
+**Isidorina potvrda i slanje na proveru, 04.11.2026. (Europe/Budapest):** Isidora Popović je potvrdila: „Pregledala sam i razumela Elenin kod.” Izveštaj se šalje predavačima na proveru. Njihov rezultat i povratna informacija se čekaju. Ova dopuna beleži Isidorinu izjavu i status slanja; raniji datirani zapisi opisuju tadašnje stanje.
+
 ## Promena i hipoteza
 
 - Članice para su Isidora Popović i Elena Kalajdžić. Isidora vodi završni prikaz i odbranu; Elenina implementaciona faza je urađena uz Codex, bez zabeležene lične potvrde rezultata.
@@ -24,7 +28,7 @@ Zajedničko objašnjenje zadatka, problema, dogovora sa Codex-om, dosadašnjeg r
 
 - U oba macOS para `refund` i `legacy` prelaze iz FAIL u PASS: završni refund koristi `refund-current`, reviziju 2, tekst o 14 dana i njegov citat; `legacy` vraća `refused`, bez citata i sa `modelCalls: 0`. Evaluacija je 2/4 → 4/4; regresija 5/7 → 7/7. `shipping`, `unsupported`, poznati aktivni i suspendovani nalog i `invalid` ostaju PASS. Oba originalna `compare` poziva su prošla (kod 0); sačuvani izlazi su u `evidence/elena/`.
 - `weakCheck: true` proverava samo neprazan tekst, pa je prolazio i za pogrešan refund. `recordedJudge` 0.95 za stari odgovor je autorski sintetički primer sa poreklom `authored-synthetic-example-not-a-real-model-run`, a ne izvršavanje LLM ocenjivača. Provere statusa, teksta, citata i traga imaju prednost nad tom ilustrativnom ocenom.
-- Codex-ovo objašnjenje samo po sebi nije nezavisna potvrda. Provereni su diff prema preuzetom checkpoint-u, stvarni assertion logovi, četiri izveštaja sa sažecima i tragovima, otisci javnih ulaza i dva kontrolisana poređenja. Novi test i mali sintetički skup ne dokazuju ponašanje za sve korpuse ili živ model; tutorova nezavisna provera i lične potvrde članica još ne postoje.
+- Codex-ovo objašnjenje samo po sebi nije nezavisna potvrda. Provereni su diff prema preuzetom checkpoint-u, stvarni assertion logovi, četiri izveštaja sa sažecima i tragovima, otisci javnih ulaza i dva kontrolisana poređenja. Novi test i mali sintetički skup ne dokazuju ponašanje za sve korpuse ili živ model. Isidora je 04.11.2026. potvrdila da je pregledala i razumela Elenin kod; Elenina lična potvrda rezultata i tutorova nezavisna provera još nisu zabeležene.
 
 ## Preporuka i ograničenja
 
@@ -35,7 +39,7 @@ Zajedničko objašnjenje zadatka, problema, dogovora sa Codex-om, dosadašnjeg r
 ## AI pomoć i pojedinačni doprinos
 
 - Codex je na Isidorin raniji zahtev pripremio početna merenja, povezao refund trag sa izvorom i sastavio hipotezu i specifikaciju. Na Elenin zahtev napisao je novi test i ciljnu izmenu, izvršio komande i sastavio dokaze. Prihvaćeni su izbor aktivnog izvora pre modela i dva warranty scenarija; ispravnost je proverena assertion padom/prolazom, javnim izveštajima, tragovima i originalnim `compare` komandama. Ovaj završni Codex pregled nije nezavisan ljudski pregled.
-- Isidora Popović: prema njenoj ranijoj belešci preuzela je projekat i, uz Codex, sačuvala početni commit; tražila je vođenu pripremu, CLI primere, početnu evaluaciju/regresiju i istragu. Originalni Windows izveštaji i specifikacija su sačuvani. Njen lični pregled Elenine izmene, razumevanje rezultata i priprema odbrane još nisu potvrđeni.
+- Isidora Popović: prema njenoj ranijoj belešci preuzela je projekat i, uz Codex, sačuvala početni commit; tražila je vođenu pripremu, CLI primere, početnu evaluaciju/regresiju i istragu. Originalni Windows izveštaji i specifikacija su sačuvani. Dana 04.11.2026. lično je potvrdila da je pregledala i razumela Elenin kod i navela da se izveštaj šalje predavačima na proveru. Ova potvrda ne beleži novo pokretanje testova; završena priprema odbrane nije zasebno potvrđena.
 - Elena Kalajdžić: preuzela je lokalni repozitorijum i zatražila pregled punog `SPEC.md`, `EVIDENCE_W09.md`, izvora i testova pre implementacije. Preko koordinatora i Codex-a usmerila je nastavak: na njen zahtev napravljeni su novi macOS početni par zbog uporedivosti, dva warranty testa i dokaz njihovog početnog pada, minimalna korekcija, završne provere i pakovanje dokaza za Isidorin pregled. Koordinator je pregledao dostavljeni materijal i dao tehničke smernice; Codex je napisao kod/test, izvršio komande i sastavio zapise. Eleni se ne pripisuje ručno pisanje koda, samostalno izvršavanje komandi, lični pregled izlaza ni nezavisna potvrda; to ostaje za njenu stvarnu proveru.
 
 ## Dogovorena podela rada i predaja
@@ -85,6 +89,8 @@ Predaja je spremna kada postoje početna merenja, istražen trag i mala specifik
 
 ### Završni pregled i odbrana — Isidora
 
+**Potvrda pregleda, 04.11.2026:** Isidora je potvrdila da je pregledala i razumela Elenin kod. Izveštaj se šalje predavačima na proveru; njihova potvrda i rezultat još se čekaju.
+
 Elena po završetku ostavlja završni SHA, opis izmene, sva četiri direktorijuma dokaza (dva početna i dva završna), `test-before.txt`, `test-after.txt`, rezultate dva poređenja i kratko obrazloženje preporuke. Isidora vodi odbranu i objašnjava:
 
 1. Koji ugovor je bio prekršen i kojim početnim tragom je to dokazano.
@@ -99,6 +105,7 @@ U sredu Elena priprema belešku o tutorovom nezavisnom rezultatu i incidentu, a 
 
 ## Dopuna u sredu
 
+- Status 04.11.2026: prema Isidorinoj izjavi, pregledala je i razumela Elenin kod; izveštaj se šalje predavačima na proveru.
 - Referenca na tutorov nezavisni rezultat i eventualno obrazloženo neslaganje: čeka se.
 - Šta incident pokazuje o dostupnosti i kontrolama; koja operativna reakcija je opravdana: čeka se incident i analiza.
 - Da li menjamo preporuku i zašto; bez obaveze novog kodiranja: još nije primenljivo.
@@ -251,6 +258,10 @@ Pre commita evidencije za objavu 03.11.2026: radni direktorijum je bio čist na 
 
 Pre spajanja u `main` 03.11.2026: na zahtev korisnika sačuvaće se prethodno necommitovani zapis stvarnog SHA `873edeaa1ca530e214be745dc00c634c25c27a56` i potvrđenog push-a Elenine grane. `origin/main` je osvežen i potvrđen kao predak te grane, pa je planirano brzo premotavanje `main` bez prepisivanja istorije. Ovaj pripremni commit menja samo `EVIDENCE_W09.md`; funkcionalne provere nisu ponavljane. Planirana poruka je `docs: record Elena branch publication before main integration`; služi kao tačka sa potpunim objavljenim dokazima pre integracije.
 
+### Priprema objave Isidorine potvrde, 04.11.2026.
+
+Na Isidorin zahtev priprema se commit `docs: record Isidora review and instructor submission status` i push na `origin/main`. Dopuna obuhvata proveru preuzetog stanja, puni SHA prethodnog checkpoint-a, Isidorinu potvrdu pregleda i razumevanja Eleninog koda i status slanja izveštaja predavačima na proveru. Menja se samo `EVIDENCE_W09.md`; novi funkcionalni testovi i evaluacija nisu pokretani. Dokumentacioni diff proverava se pre commita. Stvarni SHA i ishod push-a upisuju se tek nakon izvršavanja, kao lokalna dopuna za naredni smisleni commit. Ova tačka čuva Isidorinu potvrdu pre rezultata provere predavača.
+
 ## Dnevnik rada
 
 | Datum (Europe/Budapest) | Urađeno | Osnov za zapis / ograničenje |
@@ -272,6 +283,7 @@ Pre spajanja u `main` 03.11.2026: na zahtev korisnika sačuvaće se prethodno ne
 | 02.11.2026. u 10:00:35 CET | Na Isidorin zahtev commitovani su `SPEC.md` i dopune evidence fajla commitom `93defc8`. | Provera formatiranja prošla; aplikacioni kod nije menjan. Radni direktorijum je posle commita bio čist. Naknadno je u evidence upisan stvarni SHA ovog commita. |
 | 02.11.2026. | Na Isidorin zahtev napisan je `instructions/PROJECT_DESCRIPTION.md`: zajednički vodič o zahtevu zadatka, pronađenom problemu, dosadašnjem radu uz Codex, rezultatima, ulozi fajlova i preostalim obavezama. Povezan je sa SPEC-om i evidence fajlom. | Dokumentaciona dopuna; nije izvedena nova funkcionalna provera niti menjana aplikacija. Elenin rad i završni rezultati ostaju planirani. Vodič nije commitovan ni poslat. |
 | 02.11.2026. u 10:09:07 CET | Napravljen commit `c45bdb9` sa zajedničkim vodičem i vezama iz SPEC-a i evidence fajla; zatim su svi lokalni commitovi poslati na `origin/main`. | Push uspešan: `1f50f92..c45bdb9`. Materijal je u privatnom GitHub repozitorijumu; aplikacioni kod je neizmenjen. Naknadni zapis objave čuva se završnim commitom dnevnika. |
+| 04.11.2026. | Na Isidorin zahtev dodata je njena potvrda da je pregledala i razumela Elenin kod, uz napomenu da se izveštaj šalje predavačima na proveru. | Osnov je Isidorina izjava u razgovoru. Rezultat provere predavača se čeka; nisu pokretani novi testovi ni evaluacija. Dokumentaciona dopuna ostaje necommitovana. |
 
 ## Dnevnik commitova i povratak na prethodno stanje
 
@@ -293,7 +305,7 @@ Za svaki naredni commit dodati stvarni puni SHA, tačnu commit poruku, kratak op
 | 03.11.2026. 16:08:20 CET | `1df7b20eaef146af5cc103801b6cc07bc1c60766` — `docs: record W09 macOS evidence and release decision` | Dopunjeni evidence i SPEC, četiri macOS direktorijuma, dva test loga i konzolni dokazi; 44 fajla. | Stvarni rezultati su iznad; staged spisak pregledan. `git diff --cached --check` je prijavio samo sirovi whitespace u `test-before.txt`, koji je očuvan. Nisu ponovljeni funkcionalni testovi za dokumentacioni commit. | Potpuni lokalni checkpoint implementacije i dokaza, pre ovog završnog pregleda. |
 | 03.11.2026. 16:21:52 CET | `ed969e07174479c29098d5a542495292e9c513a9` — `docs: finalize Elena W09 review and evidence status` | Ažurirana sažeta polja i doprinosi, pregledano pakovanje dokaza i dodata dva loga ponovljenih poređenja; četiri fajla. | Oba `compare` poziva: kod 0; ostale funkcionalne provere nisu ponavljane jer je izvor neizmenjen. `git diff --cached --check` prošao. | Završni pregled beleške pre ličnih potvrda članica i objave grane. |
 | 03.11.2026. 16:27:28 CET | `873edeaa1ca530e214be745dc00c634c25c27a56` — `docs: record Elena W09 publication checkpoint` | Zabeležen stvarni SHA završnog pregleda i namera slanja grane na `origin`; samo `EVIDENCE_W09.md`, bez izmene koda i rezultata. | `git diff --cached --check` prošao; funkcionalne provere nisu ponavljane. Push na `origin/week9/elena-source-eligibility` uspešan; `git ls-remote` potvrdio isti SHA kao lokalni HEAD. | Objavljeni dokumentacioni checkpoint grane, pre ličnih potvrda članica. |
-| 03.11.2026. | Commit u pripremi — `docs: record Elena branch publication before main integration`; Git referenca `:/^docs: record Elena branch publication before main integration$` | Beleži stvarni SHA prethodnog commita i potvrđenu objavu Elenine grane; samo dokumentacija. | Dokumentacioni diff proveriti pre commita; funkcionalni testovi nisu ponavljani. Ishod spajanja i slanja `main` proveriti nakon izvršavanja. | Potpuni zapis objave grane neposredno pre integracije u `main`. |
+| 03.11.2026. 16:32:22 CET | `efbea209fe65240afaff8fb72c92ddfeb11a3d4a` — `docs: record Elena branch publication before main integration` | Beleži stvarni SHA prethodnog commita i potvrđenu objavu Elenine grane; menja samo `EVIDENCE_W09.md`. | Fetch 04.11.2026. potvrdio je ovaj SHA na `origin/main`; lokalni `main` uspešno je brzo premotan na isti commit. Prethodni zapis navodi da funkcionalni testovi nisu ponavljani; ishod tadašnje provere dokumentacionog diff-a nije zasebno potvrđen u ovom pregledu. Danas nisu pokretana nova funkcionalna merenja. | Objavljen checkpoint implementacije i svih predatih dokaza na `main`, pre ličnih potvrda članica i tutorove provere. |
 
 Puni SHA-evi prethodnih commitova zapisani su iz stvarne Git istorije. Sopstveni hash najnovijeg commita nije moguće uključiti u isti commit; za njega se koristi jedinstvena poruka i Git referenca do sledeće smislene izmene dnevnika, bez amend-a ili beskonačnog niza dokumentacionih commitova.
 
